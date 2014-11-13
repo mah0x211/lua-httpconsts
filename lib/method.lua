@@ -28,17 +28,24 @@
 
 --]]
 
-local METHOD = {
-    OPTIONS = 'OPTIONS',
-    GET     = 'GET',
-    HEAD    = 'HEAD',
-    POST    = 'POST',
-    PUT     = 'PUT',
-    DELETE  = 'DELETE',
-    TRACE   = 'TRACE',
-    CONNECT = 'CONNECT',
-    PATCH   = 'PATCH'
-};
+local METHOD = {};
+local M_UPPER = {};
+-- add uppercase/lowercase method names
+for _, m in ipairs({
+    'OPTIONS',
+    'GET',
+    'HEAD',
+    'POST',
+    'PUT',
+    'DELETE',
+    'TRACE',
+    'CONNECT',
+    'PATCH'
+}) do
+    METHOD[m], M_UPPER[m] = m, m;
+    METHOD[m:lower()] = m;
+end
+
 
 local function noNewIndex()
     error('attempt to add new index');
@@ -55,7 +62,7 @@ local CONSTANTS = setmetatable({},{
 });
 
 local function export( tbl )
-    for k, v in pairs( METHOD ) do
+    for k, v in pairs( M_UPPER ) do
         tbl[k] = v;
     end
 end
