@@ -13,7 +13,7 @@ or
 ```sh
 git clone https://github.com/mah0x211/lua-httpconsts.git
 cd lua-httpconsts
-luarocks make
+luarocks make rockspecs/httpconsts-<version>.rockspec
 ```
 
 ## HTTP Method Module
